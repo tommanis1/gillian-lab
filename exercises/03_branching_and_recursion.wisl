@@ -55,18 +55,22 @@ function list_allocate_node(v){
 {(x == #x) * (y == #y) * list(#x, #xs) * list(#y, #ys) }
 function list_concat(x, y) {
   if (x == null){
-    x := y
+    [[unfold list(x, [y])]];
+    x := y;
   } else {
+    [[ unfold list(x, #xs) ]];
+    [[ unfold list(y, #ys) ]];
     t := [x + 1];
     z := list_concat(t, y);
+    // [[fold list(z, #xs @ #ys)]];
     [x + 1] := z;
   };
   return x
 }
 { list(ret,  #xs @ #ys) }
 
-{ (x == #x) * list(#x, #vs) }
-function list_copy(x){
-  return null
-}
+// { (x == #x) * list(#x, #vs) }
+// function list_copy(x){
+//   return null
+// }
 //+{ (ret == null) }

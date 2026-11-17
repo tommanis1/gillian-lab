@@ -79,6 +79,7 @@ predicate min(+vs, v : Int) {
 function list_reverse(x) {
   if (x != null) {
     t := [x + 1];
+    // [[assert {bind #z} ]]
     [x + 1] := null;
     z := list_reverse(t);
     y := list_concat(z, x)
